@@ -34,21 +34,21 @@ class WebTestingUsingXCUITestUITests: XCTestCase {
 
     func testChrome() {
         
-        let searchField = chrome.collectionViews["ContentSuggestionsCollectionIdentifier"]/*@START_MENU_TOKEN@*/.buttons["Search or type URL"]/*[[".cells[\"CSHeaderIdentifier\"]",".buttons[\"NTPHomeFakeOmniboxAccessibilityID\"].buttons[\"Search or type URL\"]",".buttons[\"Search or type URL\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/
-        let menuButton =  chrome.webViews/*@START_MENU_TOKEN@*/.buttons[" MENU"]/*[[".otherElements[\"Welcome to the blog about software testing and so much more! – My name is Eugene Berezin. I am a software engineer in test. In this blog I talk about how to get started in tech industry, make your product better and boost your career.\"]",".otherElements[\"banner\"]",".otherElements[\"navigation\"].buttons[\" MENU\"]",".buttons[\" MENU\"]",".otherElements.matching(identifier: \"navigation\").buttons[\" MENU\"]"],[[[-1,3],[-1,4],[-1,1,2],[-1,0,1]],[[-1,3],[-1,4],[-1,1,2]],[[-1,3],[-1,2]]],[0]]@END_MENU_TOKEN@*/
+        let searchField = chrome.collectionViews["ContentSuggestionsCollectionIdentifier"].buttons["Search or type URL"]
+        let menuButton =  chrome.webViews.buttons[" MENU"]
         
         
         chrome.launch()
         searchField.tap()
         type(word: url)
-        chrome/*@START_MENU_TOKEN@*/.buttons["Go"]/*[[".keyboards.buttons[\"Go\"]",".buttons[\"Go\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        chrome.buttons["Go"].tap()
         guard menuButton.waitForExistence(timeout: 30) else {
             XCTFail("Menu button is not visible or the website is not uploaded.")
             return
         }
         menuButton.tap()
-        chrome.webViews/*@START_MENU_TOKEN@*/.staticTexts["About"]/*[[".otherElements[\"Welcome to the blog about software testing and so much more! – My name is Eugene Berezin. I am a software engineer in test. In this blog I talk about how to get started in tech industry, make your product better and boost your career.\"]",".otherElements[\"banner\"]",".otherElements[\"navigation\"]",".links[\"About\"].staticTexts[\"About\"]",".staticTexts[\"About\"]",".otherElements.matching(identifier: \"navigation\")"],[[[-1,4],[-1,3],[-1,5,3],[-1,1,2],[-1,0,1]],[[-1,4],[-1,3],[-1,5,3],[-1,1,2]],[[-1,4],[-1,3],[-1,2,3]],[[-1,4],[-1,3]]],[0]]@END_MENU_TOKEN@*/.tap()
-        XCTAssert(chrome.webViews/*@START_MENU_TOKEN@*/.staticTexts["About"]/*[[".otherElements[\"Welcome to the blog about software testing and so much more! – My name is Eugene Berezin. I am a software engineer in test. In this blog I talk about how to get started in tech industry, make your product better and boost your career.\"]",".otherElements[\"banner\"]",".otherElements[\"navigation\"]",".links[\"About\"].staticTexts[\"About\"]",".staticTexts[\"About\"]",".otherElements.matching(identifier: \"navigation\")"],[[[-1,4],[-1,3],[-1,5,3],[-1,1,2],[-1,0,1]],[[-1,4],[-1,3],[-1,5,3],[-1,1,2]],[[-1,4],[-1,3],[-1,2,3]],[[-1,4],[-1,3]]],[0]]@END_MENU_TOKEN@*/.exists, "About secition is not visible")
+        chrome.webViews.staticTexts["About"].tap()
+        XCTAssert(chrome.webViews.staticTexts["About"].exists, "About secition is not visible")
         
         
     }
